@@ -36,7 +36,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             return redirect()->intended(route("home"));
         }
-        return redirect(route("login.store"))->with("error","login failed");
+        return redirect(route("login.post"))->with("error","login failed");
     }
 
 

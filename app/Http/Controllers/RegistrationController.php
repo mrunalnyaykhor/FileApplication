@@ -59,15 +59,10 @@ class RegistrationController extends Controller
 
   if($user->save){
     return redirect(route("register.store"))
-    ->with("success","User created successfully....!!");
+    ->with("error","User not created successfully....!!");
   }
-//  return redirect(route("register.store"))
-//  ->with("error","Failed to create acount");
 
-        // Redirect or perform any other action
-
-        // $this->user->create($request->all());
-        return redirect(route("login.store"))->with('success', 'User created successfully');
+        return redirect(route("login.post"))->with('success', 'User  created successfully');
     }
     public function logout(Request $request){
         $request->session()->flush();
@@ -122,5 +117,5 @@ class RegistrationController extends Controller
     //   }
 
 
-}
 
+    }
