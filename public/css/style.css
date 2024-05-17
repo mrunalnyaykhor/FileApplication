@@ -1,0 +1,17 @@
+body {
+    background: #0ad8d1;
+    background: linear-gradient(to right, #11e8de, #0bd0d6);
+}
+
+.login {
+    .card-title {
+        background-color: red;
+    }
+}
+
+
+.registration {
+    .card-title {
+        background-color: red;
+    }
+}
