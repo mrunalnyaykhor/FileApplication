@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Mail\RegisterMail;
 use Session;
 use Auth;
+use Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
@@ -47,22 +50,50 @@ class RegistrationController extends Controller
         }
 
         // Create a new user instance and store it in the database
-        $this->user->create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),]);
+        // $this->user->create([
+        //     'name' => $validatedData['name'],
+        //     'email' => $validatedData['email'],
+        //     'password' => bcrypt($validatedData['password']),
+
+        // ]);
 
             $user = new User();
-            $user->name = $request->fullname;
+            $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
 
-  if($user->save){
-    return redirect(route("register.store"))
-    ->with("error","User not created successfully....!!");
-  }
+            $user->verification_code = "1";
+          $user->save();
+        //   $user->remember_token=str()::random(40);
 
-        return redirect(route("login.post"))->with('success', 'User  created successfully');
+            // Mail::to($user->email)->send(new RegisterMail($user));
+            if($user != null){
+
+                MailController::sendSignupEmail($user->name, $user->email, $user->verification_code);
+                return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification link.'));
+            }
+
+            return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
+
+//   if($user->save){
+//     return redirect(route("register.store"))
+//     ->with("error","User not created successfully....!!");
+//   }
+
+//         return redirect(route("login.post"))->with('success', 'User  created successfully');
+
+}
+
+    public function verifyUser(Request $request){
+        $verification_code = \Illuminate\Support\Facades\Request::get('code');
+        $user = User::where(['verification_code' => $verification_code])->first();
+        if($user != null){
+            $user->is_verified = 1;
+            $user->save();
+            return redirect()->route('login')->with(session()->flash('alert-success', 'Your account is verified. Please login!'));
+        }
+
+        return redirect()->route('login')->with(session()->flash('alert-danger', 'Invalid verification code!'));
     }
     public function logout(Request $request){
         $request->session()->flush();
@@ -79,43 +110,7 @@ class RegistrationController extends Controller
         return view('welcome');
     }
 
-    // function insertProductsPost(Request $request){
-    //   $request -> validate([
-    //    "p_name"=> "required",
-    //    "P_slug"=>"required",
-    //    "p_price"=>"required",
-    //    "p_date"=>"required",
-    //   ]);
-    //   $product= new $Products();
-    //   $product->product_name =$request->p_name;
-    //   $product->product_slug=$request->p_slug;
-    //   $product->product_price=$request->p_price;
-    //   $product->product_date=$request->p_date;
-
-    //   if($product->save()){
-    //     return "value inserted successfully";
-    //   }
-    //   return "Error occured";
-    // }
-    // function upadateProductsPost(Request $request){
-    //     $request -> validate([
-    //      "p_name"=> "required",
-    //      "P_slug"=>"required",
-    //      "p_price"=>"required",
-    //      "p_date"=>"required",
-    //     ]);
-    //     $product= new Products::where("slug",$request->p_slug)->first();
-    //     $product->product_name =$request->p_name;
-    //     $product->product_slug=$request->p_slug;
-    //     $product->product_price=$request->p_price;
-    //     $product->product_date=$request->p_date;
-
-    //     if($product->save()){
-    //       return "value updated successfully";
-    //     }
-    //     return "Error occured";
-    //   }
-
+   
 
 
     }
