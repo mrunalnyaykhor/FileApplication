@@ -9,34 +9,29 @@ use App\Http\Controllers\VerificationController;
 
 Route::get('/send-test-email', [HomeController::class, 'sendTestEmail']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/forget-password',[RegistrationController::class,'forgetPasswordLoad']);
+Route::post('/forget-password',[RegistrationController::class,'forgetPassword'])->name('forgetPassword');
+
+Route::get('/reset-password',[RegistrationController::class,'resetPasswordLoad']);
+Route::post('/reset-password',[RegistrationController::class,'resetPassword'])->name('resetPassword');
+
+
+
+Route::get('/', function () {  return view('auth.login');});
 Route::get('gallery',[App\Http\Controllers\GalleryController::class,'index']);
 Route::get('gallery/upload',[App\Http\Controllers\GalleryController::class,'create']);
 Route::post('gallery/upload',[App\Http\Controllers\GalleryController::class,'store']);
-//Route::get('/gallery/upload', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+Route::get('gallery', [App\Http\Controllers\GalleryController::class, 'index'])->name('gallery.index');
+Route::delete('/gallery/{id}', [App\Http\Controllers\GalleryController::class, 'delete'])->name('gallery.delete');
 
+Route::get('homepage',[App\Http\Controllers\GalleryController::class,'index']);
 
-Route::get('home',[App\Http\Controllers\GalleryController::class,'index']);
+Route::get('register', function () { return view('auth.register');});
+Route::get('about', function () { return view('auth.about');});
+Route::get('contact', function () { return view('auth.contact');});
 
-
-// Route::middleware("auth")->group(function(){
-//    Route::get('/home', function () {
-//     // return view('auth.dashboard');
-//     return view('gallery.index');
-// })->name('home');
-// });
-
-Route::get('register', function () {
-    return view('auth.register');
-});
-Route::get('about', function () {
-    return view('auth.about');
-});
-Route::get('contact', function () {
-    return view('auth.contact');
-});
+Route::post('/user/{id}/update-name', [RegistrationController::class, 'updateName'])->name('edit.updateName');
+Route::get('/edit', [RegistrationController::class, 'editProfile'])->name('edit');
 
 Route::post('/register', [RegistrationController::class, 'store'])->name('register.store');
 Route::get("/register", [RegistrationController::class,'index'])->name("register");

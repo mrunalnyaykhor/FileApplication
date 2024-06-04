@@ -3,6 +3,22 @@ body {
     background: linear-gradient(to right, #11e8de, #0bd0d6);
 }
 
+.city {
+  background-color: rgb(221, 12, 110);
+  color: white;
+  border: 2px solid black;
+  margin: 10px;
+  padding: 10px;
+  /* width: 500px; */
+}
+.container{
+    width: 700px;
+}
+.city1{
+    background-color: rgb(221, 12, 110);
+
+}
+
 .login {
     .card-title {
         background-color: red;

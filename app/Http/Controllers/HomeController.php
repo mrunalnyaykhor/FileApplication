@@ -12,7 +12,7 @@ class HomeController extends Controller
 
     public function sendTestEmail()
     {
-       // echo "Hare KRishna";
+      
         Mail::to('mrunalnyaykhor@gmail.com')->send(new TestEmail('someusertoken', 'Your Subject', 'The body of your message'));
         return 'Test email sent!';
     }

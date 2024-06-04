@@ -31,7 +31,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <li><a class="dropdown-item" href="#">Reset Password</a></li>
               <li><a class="dropdown-item" href="#">Editprofile</a></li>
-              <li><a class="dropdown-item" href="{{url('/')}}">Logout</a></li>
+              <li><a class="dropdown-item" href="/login">Logout</a></li>
             </ul>
           </div>
     </ul>
@@ -60,12 +60,16 @@
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h4 class="mb-0">upload Multiple Images</h4>
-                            <a href="{{'gallery'}}" class="btn btn-danger float-end">Back</a>
+                            <div class="text-center">
+                                <h4 class="mb-0">Upload Multiple Files</h4>
+                            </div>
+                                <a class="btn btn-primary float-end" href="/login" >Home</a>
+
+                            <a href="/homepage" class="btn btn-success float center">View Galary</a>
                         </div>
                         <div class="card-body">
 
-                            <label>Drag and Drop Multiple Images (JPG, JPEG, PNG, .webp)</label>
+                            <label>Drag and Drop Multiple files/Images </label>
 
                             <form action="{{ url('gallery/upload') }}" method="POST" enctype="multipart/form-data"
                                 class="dropzone" id="myDragAndDropUploader">
@@ -79,6 +83,7 @@
                 </div>
             </div>
         </div>
+
     </body>
     <div>
         </body>
