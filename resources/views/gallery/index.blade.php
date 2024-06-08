@@ -7,26 +7,9 @@
     <title>@yield('title', 'File shared Application')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/index.css') }}">
 
-    <style>
-        .gallery-img {
-            width: 100%;
-            height: auto;
-        }
-
-        .card {
-            margin: 10px 0;
-        }
-
-        .navbar.navbar-white .nav-link {
-            color: white;
-        }
-
-        .navbar-brand {
-            color: white !important;
-            /* Set the text color to white */
-        }
-    </style>
+    
 </head>
 
 <body class="indexbladebody">

@@ -29,12 +29,12 @@
                         @endif
                         <div class="card-body p-8 p-sm-6">
 
-                                <p class="card-title text-center mb-2 fw-bold fs-2">Register Here...!!</p>
-                                <form action="{{ route('register.store') }}" method="POST">
+                                <p class="card-title text-center mb-2 fw-bold fs-2">Get in Touch...!!</p>
+                                <form action="{{ route('contact.store') }}" method="POST">
                                     @csrf
 
                                     <div class="form-floating mb-1">
-                                        <input type="text" class="form-control" name="name" placeholder="myusername"
+                                        <input type="text" class="form-control" name="name"
                                             required>
                                         @if ($errors->has('name'))
                                             <span class="text-danger">
@@ -45,7 +45,7 @@
 
                                     <div class="form-floating mb-1">
                                         <input type="email" class="form-control" name="email"
-                                            placeholder="name@example.com" required>
+                                         required>
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -58,27 +58,28 @@
                                         <label for="floatingInputEmail">Email address</label>
                                     </div>
                                     <div class="form-floating mb-1">
-                                        <input type="password" class="form-control" name="password" placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
+                                        <input type="number" class="form-control" name="mobilenumber"
+                                            required>
+                                        @if ($errors->has('mobilenumber'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('mobilenumber') }}</span>
+                                        @endif
+                                        <label for="floatingInputUsername">Mobile Number</label>
                                     </div>
-
                                     <div class="form-floating mb-1">
-                                        <input type="password" class="form-control" name="password_confirmation"
-                                            placeholder="Confirm Password">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                        <label for="floatingPasswordConfirm">Confirm Password</label>
+                                        <input type="textarea" class="form-control" name="address"
+                                            required>
+                                        @if ($errors->has('address'))
+                                            <span class="text-danger">
+                                                {{ $errors->first('address') }}</span>
+                                        @endif
+                                        <label for="floatingInputUsername">Address</label>
                                     </div>
 
                                     <div class="d-grid mb-2">
-                                        <input type ="submit" class ="btn btn-info" value="Register">
+                                        <input type ="submit" class ="btn btn-info" value="Send">
                                     </div>
 
-                                    <a class="d-block text-center mt-2 small" href="{{ url('login') }}">Have an account?
-                                        _login</a>
 
 
                                 </form>

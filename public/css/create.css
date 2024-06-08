@@ -1,0 +1,30 @@
+.image-container {
+    width: 1300px; /* Set the container width as needed */
+    height: 200px; /* Set the container height */
+    overflow: hidden; /* Hide overflow to show the zoom effect */
+    position: relative;
+}
+
+.image-container img {
+    width: 150%; /* Increase the width to zoom */
+    height: 100%; /* Maintain the height */
+    position: absolute;
+    left: -25%; /* Center the image */
+}
+
+
+
+  /* navbar content */
+.navbar.navbar-white .nav-link {
+    color: white;
+  }
+  .navbar-brand {
+    color: white !important; /* Set the text color to white */
+  }
+  body {
+    background: url('https://png.pngtree.com/thumb_back/fh260/background/20230409/pngtree-abstract-cyan-lights-background-design-stock-vector-blue-wallpaper-image_2369002.jpg?w=600') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}

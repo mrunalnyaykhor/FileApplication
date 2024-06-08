@@ -1,0 +1,23 @@
+body {
+    background: url('https://i.pinimg.com/474x/82/7c/a5/827ca5f858053230ecf97c99ad526ec3.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.card-body {
+    background: url('https://i.pinimg.com/736x/96/91/2d/96912def8db257381c17a9c5157add00.jpg') ;
+    background-size: cover;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: rgb(22, 159, 205); /* Adjust text color for better readability */
+}
+
+
+.col-lg-6 {
+    padding-right: 50px;
+    padding-left: 50px;
+
+ }

@@ -1,97 +1,45 @@
-@extends('auth.layouts')
-@section('title', 'login')
+<html lang="en">
+    @extends('auth.layouts')
+ @section('title', 'register')
 @section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/contact.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <head>
-        <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}">
-    </head>
+</head>
+<body>
 
-    <div>
+    <div class="container">
+        <h1 class="mt-5">Contact us</h1>
 
+        <div class="contact-info">
 
-        <title>Contact Us</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f9;
+            <p><strong>Phone Number:</strong> +1 (555) 123-4567</p>
+            <p><strong>Email:</strong> nexus123@gmail.com</p>
+        </div>
 
-                padding: 0;
-                display: flex;
-                */ justify-content: center;
-                /* display: flex; */
-                height: 100vh;
-                padding: 1px;
+        <div class="contact-info">
+            <h2>Our Location</h2>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30435.243708885615!2d78.46630201498776!3d17.36160710485766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99d2b5aedd03%3A0x5f9e3a27e7c51a1c!2sCharminar!5e0!3m2!1sen!2sin!4v1686160344290!5m2!1sen!2sin"
 
-                display: grid;
-                place-items: center;
-                height: 10vh;
-
-
-            }
-
-            .contact-container {
-                background-color: #ffffff;
-                padding: 20px;
-                border-radius: 20px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                width: 900px;
-                max-width: 100%;
-            }
-
-            h2 {
-                color: #333;
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-            label {
-                display: block;
-                margin-bottom: 8px;
-                color: #555;
-            }
-
-            input,
-            textarea {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 10px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                box-sizing: border-box;
-            }
-
-            input[type="submit"] {
-                background-color: #28a745;
-                color: white;
-                border: none;
-                cursor: pointer;
-                padding: 12px;
-                transition: background-color 0.3s ease;
-            }
-
-            input[type="submit"]:hover {
-                background-color: #218838;
-            }
-        </style>
-
-        <body>
-            <div class="contact-container">
-                <h2>Contact Us</h2>
-                <form action="#" method="post">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="mobile">Mobile Number</label>
-                    <input type="text" id="mobile" name="mobile" required>
-
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-
-                    <input type="submit" value="Send Message">
-                </form>
+                    frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             </div>
-        </body>
+        </div>
+
+        <div class="contact-info mt-4">
+            <h2>Our Campus</h2>
+            <img src="https://media.glassdoor.com/l/2425536/mait-solutions-office.jpg" alt="Our Office" class="contact-photo">
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
 @endsection

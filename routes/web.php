@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::get('homepage',[App\Http\Controllers\GalleryController::class,'index']);
 Route::get('register', function () { return view('auth.register');});
 Route::get('about', function () { return view('auth.about');});
 Route::get('contact', function () { return view('auth.contact');});
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');   
 
 Route::post('/user/{id}/update-name', [RegistrationController::class, 'updateName'])->name('edit.updateName');
 Route::get('/edit', [RegistrationController::class, 'editProfile'])->name('edit');

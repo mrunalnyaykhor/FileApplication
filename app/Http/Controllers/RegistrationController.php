@@ -29,15 +29,6 @@ class RegistrationController extends Controller
         return view("auth.register")->with($response);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
 
@@ -102,6 +93,7 @@ class RegistrationController extends Controller
 
 
     public function verifyUser(Request $request){
+
         $verification_code = \Illuminate\Support\Facades\Request::get('code');
         $user = User::where(['verification_code' => $verification_code])->first();
         if($user != null){
@@ -118,14 +110,7 @@ class RegistrationController extends Controller
         return redirect("login");
     }
 
-    function listUsers(){
-        $users =User::get();
-        return view("welcome",compact('users'));
-    }
 
-    function insertProducts(){
-        return view('welcome');
-    }
 
     public function forgetPasswordLoad(){
         return view('forget-password');

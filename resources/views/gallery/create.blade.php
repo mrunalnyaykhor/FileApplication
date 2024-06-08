@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" >
     <link rel="stylesheet" type="text/css" href="{{ asset('http://127.0.0.1:8000/css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/create.css') }}">
   </head>
   <body>
       <nav class="navbar navbar-expand-sm bg-black navbar-white">
@@ -29,23 +30,16 @@
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
             id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Reset Password</a></li>
-              <li><a class="dropdown-item" href="#">Editprofile</a></li>
-              <li><a class="dropdown-item" href="/login">Logout</a></li>
+                <li><a class="dropdown-item" href="{{url('forget-password')}}">Reset Password</a></li>
+                <li><a class="dropdown-item" href="{{ url('edit') }}">Editprofile</a></li>
+                <li><a class="dropdown-item" href="/login">Logout</a></li>
             </ul>
           </div>
     </ul>
     </div>
   </nav>
   </body>
-  <style>
-  .navbar.navbar-white .nav-link {
-    color: white;
-  }
-  .navbar-brand {
-    color: white !important; /* Set the text color to white */
-  }
-  </style>
+
 
   <body>
 @yield('content')
@@ -53,17 +47,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js"></script>
   </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <body>
+    <link rel="stylesheet" href="public/css/create.css">
+
+</head>
+
+    <body >
+
         <div class="container mt-4">
+
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <div class="text-center">
-                                <h4 class="mb-0">Upload Multiple Files</h4>
-                            </div>
+
+                <div class="col-md-18">
+                    <div class="card mb-8" >
+
+                        <div class="card-header11">
+
+
+
+                           
                                 <a class="btn btn-primary float-end" href="/login" >Home</a>
+
 
                             <a href="/homepage" class="btn btn-success float center">View Galary</a>
                         </div>

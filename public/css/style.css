@@ -3,6 +3,12 @@ body {
     background: linear-gradient(to right, #11e8de, #0bd0d6);
 }
 
+/* login here page */
+.card-title {
+    color: #abda11;
+    /* Dark blue color */
+}
+
 .city {
   background-color: rgb(221, 12, 110);
   color: white;
@@ -240,4 +246,25 @@ body {
       margin-left: initial;
       width: auto;
     }
-  }
+    .card-header11{
+        justify-content: left;
+        margin-left: initial;
+        padding-left: 1000px;
+        padding-right: 10px;
+
+    }
+/* image  about us page */
+
+    .img {
+        /* display: flex; */
+        justify-content: right;
+        margin-top: 20px;
+    }
+
+    .img img {
+        max-width: 100%;
+        height: 20px;
+    }
+
+}
+

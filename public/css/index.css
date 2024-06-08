@@ -1,0 +1,24 @@
+body {
+    background: linear-gradient(to right, rgba(60, 218, 218, 0.833), hsla(200, 57%, 49%, 0.5)),
+                url('https://cdn.pixabay.com/photo/2022/06/23/17/13/ball-7280265_640.jpg?w=100') no-repeat center center fixed;
+
+                
+    background-size: cover;
+}
+ .gallery-img {
+    width: 100%;
+    height: auto;
+}
+
+.card {
+    margin: 10px 0;
+}
+
+.navbar.navbar-white .nav-link {
+    color: white;
+}
+
+.navbar-brand {
+    color: white !important;
+
+}
