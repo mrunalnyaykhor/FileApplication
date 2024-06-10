@@ -1,22 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\PasswordReset;
-use App\Mail\RegisterMail;
-use Session;
-//use Auth;
-use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Validation\Rule;
-use Spatie\FlareClient\Http\Response;
 
 class RegistrationController extends Controller
 {
@@ -41,8 +34,6 @@ class RegistrationController extends Controller
         if (User::where('email', $validatedData['email'])->exists()) {
             return redirect()->back()->withErrors(['email' => 'Email address already exists']);
         }
-
-
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
@@ -62,30 +53,21 @@ class RegistrationController extends Controller
         }
         public function updateName(Request $request, $id)
         {
-            // Validate the incoming data
+
             $validatedData = $request->validate([
                 'name' => 'required|string',
             ]);
-
-            // Find the user by ID
             $user = User::find($id);
-
-            // Check if user exists
             if (!$user) {
                 return redirect()->back()->withErrors(['user' => 'User not found']);
             }
-
-            // Update the user's name
             $user->name = $validatedData['name'];
             $user->save();
-
-            // Return a success message
             return redirect()->back()->with(session()->flash('alert-success', 'Your name has been updated successfully.'));
         }
 
         public function editProfile()
         {
-            // Assuming the authenticated user is the one being edited
             $user = auth()->user();
 
             return view('auth.edit', compact('user'));
@@ -115,7 +97,6 @@ class RegistrationController extends Controller
     public function forgetPasswordLoad(){
         return view('forget-password');
     }
-//forget password Api method
     public function forgetPassword(Request $request){
         try{
             $user=User::where('email', $request->email)->get();
@@ -141,7 +122,8 @@ class RegistrationController extends Controller
                     [
                     'email'=> $request->email,
                     'token'=> $token,
-                    'created_at'=> $datetime
+                    'created_at'=> $datetime,
+                    'updated_at'=> $datetime
                 ],
             );
             return response()->json([ 'success'=>true,'msg'=>"Please check your mail to reset your password"]);
@@ -152,8 +134,7 @@ class RegistrationController extends Controller
         catch(\Exception $e){
             return response()->json(['success'=>false,'msg'=>$e->getMessage()]);
         }
-    }
-    public function resetPasswordLoad(Request $request){
+    }    public function resetPasswordLoad(Request $request){
         $resetData = PasswordReset::where('token',$request->token)->get();
         if(isset($request->token) && count($resetData)>0)
         {
@@ -177,7 +158,7 @@ class RegistrationController extends Controller
        $user = User::find($request->id);
        $user->password =Hash::make($request->password);
        $user->save();
-       PasswordReset::where('email',$user->email)->delete();
+      // PasswordReset::where('email',$user->email)->delete();
        return redirect()->route('login')->with(session()->flash('alert-success', 'your password has reset successfully.'));
 
     }

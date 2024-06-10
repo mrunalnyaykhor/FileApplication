@@ -1,20 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Gallery;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Validation\Validator;
-
-use App\Http\Controllers\IlluminateSupportFacadesValidator;
-use App\Http\Controllers\IlluminateFoundationBusDispatchesJobs;
-
-use IlluminateFoundationValidationValidatesRequests;
-use IlluminateFoundationAuthAccessAuthorizesRequests;
-use IlluminateFoundationAuthAccessAuthorizesResources;
-use IlluminateHtmlHtmlServiceProvider;
-
 
 class LoginController extends Controller
 {
@@ -26,21 +15,31 @@ class LoginController extends Controller
 
         return view('auth.login');
     }
+    function login(Request $request) {
 
-    function login(Request $request){
-
-
-        $request ->validate([
-            "email"=>"required",
-            "password"=>"required",
+        $request->validate([
+            "email" => "required|email",
+            "password" => "required",
         ]);
-        $credentials =$request->only("email","password");
-        if(Auth::attempt($credentials)){
+        $credentials = $request->only("email", "password");
+        $remember = $request->has('remember');
+        if (Auth::attempt($credentials, $remember)) {
 
-                return redirect('gallery');
+            if ($remember) {
+                setcookie('email', $request->email, time() + (86400 * 30), "/"); // 30 days
+                setcookie('password', $request->password, time() + (86400 * 30), "/"); // 30 days
+            } else {
+                if (isset($_COOKIE['email'])) {
+                    setcookie('email', '', time() - 3600, "/");
+                }
+                if (isset($_COOKIE['password'])) {
+                    setcookie('password', '', time() - 3600, "/");
+                }
+            }
+
+             return redirect('gallery')->with('success', 'Login successful!');
         }
-        return redirect(route("login.post"))->with("error","login failed");
-
+        return redirect()->route("login.post")->with("error", "Login failed");
     }
     public function gallery()
     {

@@ -17,7 +17,7 @@ class VerificationController extends Controller
         if ($user) {
             // Mark the user as verified
             $user->email_verified_at = now();
-            $user->verification_code = null; // Clear the verification code
+            $user->verification_code = 0; // Clear the verification code
             $user->save();
 
             // Redirect or return a response

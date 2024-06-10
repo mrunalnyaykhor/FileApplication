@@ -29,7 +29,6 @@ class GalleryController extends Controller
             'file.max' => 'File size greater than 2MB.',
         ];
 
-        // Validate the file input with custom error messages
         $request->validate([
             'file' => 'required|file|mimes:pdf,doc,docx,xlsx,xls|max:2048', // max size in kilobytes
         ], $messages);
@@ -43,10 +42,6 @@ class GalleryController extends Controller
             $extension = $file->getClientOriginalExtension();
             $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $counter = 1;
-
-
-
-
             $filename = $file->getClientOriginalName(); // Get the original filename
             while (file_exists($uploadPath . $filename)) {
                 $filename = $originalFilename . '(' . $counter . ').' . $extension;
@@ -79,11 +74,11 @@ class GalleryController extends Controller
 
     public function delete($id)
     {
-        // Find the gallery image by ID
+
         $galleryImage = Gallery::find($id);
 
         if ($galleryImage) {
-            // Delete the gallery image
+
             $galleryImage->delete();
 
             return redirect()->back()->with('success', 'file deleted successfully.');
