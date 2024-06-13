@@ -29,7 +29,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+         $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
             'address' => 'required|string',

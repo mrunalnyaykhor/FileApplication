@@ -1,5 +1,4 @@
 @extends('auth.layouts')
-{{-- @section('title', 'register') --}}
 @section('content')
 
     <head>
@@ -10,12 +9,8 @@
 
     <body>
         <div class="col-lg-6 col-md-6">
-
-
                 <div class="col-lg-20 col-xl-20 mx-auto">
-
                     <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
-
                         @if (@session()->has('success'))
                             <div class="alert alert-success">
                                 {{ session()->get('success') }}

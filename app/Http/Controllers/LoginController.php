@@ -37,7 +37,7 @@ class LoginController extends Controller
                 }
             }
 
-             return redirect('gallery')->with('success', 'Login successful!');
+             return redirect('gallery')->with('alert-success', 'Login successful...!');
         }
         return redirect()->route("login.post")->with("error", "Login failed");
     }

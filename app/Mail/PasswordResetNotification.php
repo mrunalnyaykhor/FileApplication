@@ -1,35 +1,44 @@
 <?php
 
 namespace App\Mail;
+
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class TestEmail extends Mailable
+class PasswordResetNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $usertoken;
-    private $subject;
-    private $body;
+    public $newPassword;
 
-    public function __construct($usertoken, $subject, $body)
+    /**
+     * Create a new message instance.
+     *
+     * @param string $newPassword The new password
+     * @return void
+     */
+    public function __construct($newPassword)
     {
-        $this->usertoken = $usertoken;
-        $this->subject = $subject;
-        $this->body = $body;
+        $this->newPassword = $newPassword;
     }
-
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Test Email',
+            subject: 'Password Reset Notification',
         );
+    }
+
+    public function build()
+    {
+        return $this->subject('Your New Password')
+                    ->view('mail.password_reset_notification'); // Create a Blade template for the email content
     }
 
     /**
@@ -38,7 +47,7 @@ class TestEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.test',
+            view: 'mail.password_reset_notification',
         );
     }
 

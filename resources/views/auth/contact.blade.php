@@ -17,7 +17,7 @@
 
         <div class="contact-info">
 
-            <p><strong>Phone Number:</strong> +1 (555) 123-4567</p>
+            <p><strong>Phone Number:</strong> +91-7700088990</p>
             <p><strong>Email:</strong> nexus123@gmail.com</p>
         </div>
 

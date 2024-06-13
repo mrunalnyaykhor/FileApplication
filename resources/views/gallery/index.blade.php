@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url('/css/index.css') }}">
 
-    
+
 </head>
 
 <body class="indexbladebody">
@@ -17,9 +17,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/">FileShareApplication</a>
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('homepage') }}">Homepage</a>
-                </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('about') }}">About_Us</a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

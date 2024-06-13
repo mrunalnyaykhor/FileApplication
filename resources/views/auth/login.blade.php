@@ -12,6 +12,22 @@
         <div class="card my-5 border-0 shadow rounded-3">
             <div class="card-body p-4 p-sm-5">
                 <p class="card-title text-center mb-5 fw-bold fs-5">Login Here...!!</p>
+                @if (session('alert-success'))
+                <p> <div style="color: hsl(119, 91%, 48%);" >
+                     {{ session('alert-success') }}
+                 </div>
+                </p>
+             @endif
+
+             @if ($errors->any())
+                 <div style="color: red;">
+                     <ul>
+                         @foreach ($errors->all() as $error)
+                             <li>{{ $error }}</li>
+                         @endforeach
+                     </ul>
+                 </div>
+             @endif
                 <form action="{{ route('login.post') }}" method="POST">
                     @csrf
 

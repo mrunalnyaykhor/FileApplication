@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Mail\PasswordResetNotification;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\PasswordReset;
@@ -53,15 +54,17 @@ class RegistrationController extends Controller
         }
         public function updateName(Request $request, $id)
         {
-
-            $validatedData = $request->validate([
-                'name' => 'required|string',
+            $request->validate([
+                'name' => 'required|regex:/^[\pL\s\-]+$/u', // Example regex for string validation
+            ], [
+                'name.required' => 'The name field is required.',
+                'name.regex' => 'Invalid string.',
             ]);
             $user = User::find($id);
             if (!$user) {
                 return redirect()->back()->withErrors(['user' => 'User not found']);
             }
-            $user->name = $validatedData['name'];
+            $user->name = $request['name'];
             $user->save();
             return redirect()->back()->with(session()->flash('alert-success', 'Your name has been updated successfully.'));
         }
@@ -134,7 +137,8 @@ class RegistrationController extends Controller
         catch(\Exception $e){
             return response()->json(['success'=>false,'msg'=>$e->getMessage()]);
         }
-    }    public function resetPasswordLoad(Request $request){
+    }
+      public function resetPasswordLoad(Request $request){
         $resetData = PasswordReset::where('token',$request->token)->get();
         if(isset($request->token) && count($resetData)>0)
         {
@@ -156,10 +160,19 @@ class RegistrationController extends Controller
 
       ]);
        $user = User::find($request->id);
+       $newPassword = $request->password;
        $user->password =Hash::make($request->password);
        $user->save();
+       Mail::to($user->email)->send(new PasswordResetNotification($newPassword));
       // PasswordReset::where('email',$user->email)->delete();
-       return redirect()->route('login')->with(session()->flash('alert-success', 'your password has reset successfully.'));
+
+       if($user != null){
+
+        return redirect()->route('login')->with(session()->flash('alert-success', 'your password has reset successfully.'));
+    }
+
+    return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
+
 
     }
 

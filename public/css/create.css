@@ -1,19 +1,8 @@
-.image-container {
-    width: 1300px; /* Set the container width as needed */
-    height: 200px; /* Set the container height */
-    overflow: hidden; /* Hide overflow to show the zoom effect */
-    position: relative;
+
+.card-body {
+    color: rgb(39, 3, 23);
+
 }
-
-.image-container img {
-    width: 150%; /* Increase the width to zoom */
-    height: 100%; /* Maintain the height */
-    position: absolute;
-    left: -25%; /* Center the image */
-}
-
-
-
   /* navbar content */
 .navbar.navbar-white .nav-link {
     color: white;
@@ -27,4 +16,15 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+
 }
+.dropzone {
+    min-height: 50px;
+    border: 30px solid hsla(203, 90%, 43%, 0.933);
+    background: hsla(203, 90%, 43%, 0.933);
+    padding: 20px 20px;
+  }
+ .card-header11{
+    border: 30px solid hsla(14, 93%, 48%, 0.902);
+  }
+

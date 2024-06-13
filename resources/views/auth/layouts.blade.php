@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-sm bg-black navbar-white">
         <div class="container-fluid">
             <!-- Heading name in the left corner -->
-            <a class="navbar-brand" href="#">FileShareApplication</a>
+            <a class="navbar-brand" href="{{ url('register') }}">FileShareApplication</a>
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ url('homepage') }}">Homepage</a>

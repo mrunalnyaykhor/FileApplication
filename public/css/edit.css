@@ -1,0 +1,61 @@
+body {
+    background: url('https://i.pinimg.com/474x/82/7c/a5/827ca5f858053230ecf97c99ad526ec3.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.card {
+    background: url('https://i.pinimg.com/736x/96/91/2d/96912def8db257381c17a9c5157add00.jpg') ;
+    background-size: cover;
+    padding: 0rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    color: rgb(22, 159, 205); /* Adjust text color for better readability */
+}
+.city {
+    background-color: rgb(221, 12, 110);
+    color: white;
+    border: 1px solid black;
+    
+    padding: 10px;
+    padding-left: 20px;
+    padding-left: 20px;
+    /* width: 500px; */
+  }
+  .container{
+      width: 330px;
+  }
+
+.city3 {
+    background-color: rgb(19, 209, 130);
+    color: white;
+    border: 1px solid black;
+
+    padding: 10px;
+    padding-left: 20px;
+    padding-left: 20px;
+    /* width: 500px; */
+  }
+  .col-lg-6 {
+    padding-right:50px;
+    padding-left: 50px;
+
+ }
+ .card-title {
+    color: hsl(52, 82%, 52%);
+    /* Dark blue color */
+}
+.btn-black-white {
+background-color: black;
+color: white;
+
+}
+.right-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 30px;
+}
+
+
+
