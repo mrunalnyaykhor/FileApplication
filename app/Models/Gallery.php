@@ -14,6 +14,12 @@ class Gallery extends Model
 
         'fileName',
         'fileSize',
-        'owner'
+        'owner',
+        'email'
+
     ];
+        public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

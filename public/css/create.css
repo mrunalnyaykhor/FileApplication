@@ -18,13 +18,46 @@
     padding: 0;
 
 }
+#exampleCircle{
+    width: 100px;
+    height: 95px;
+    background: rgba(3, 98, 117, 0.867);
+    border-radius: 60%;
+}
 .dropzone {
     min-height: 50px;
-    border: 30px solid hsla(203, 90%, 43%, 0.933);
-    background: hsla(203, 90%, 43%, 0.933);
+    border: 30px solid hwb(191 8% 11% / 0.933);
+    background: hwb(187 4% 10% / 0.933);
     padding: 20px 20px;
   }
- .card-header11{
+  .nameplate-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    border: 8px solid hwb(340 0% 99%);
+    border-radius: 5px;
+    width: 1115px; /* Adjust the width as needed */
+    background-color: hwb(220 93% 4%);
+}
+
+.nameplate {
+    /* display: inline-block; */
+    padding: 7px ;
+    font-size: 16px;
+    font-weight: bold;
+    color: hwb(266 4% 8%);
+    /* white-space: nowrap; */
+    animation: scroll 15s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+ /* .card-header11{
     border: 30px solid hsla(14, 93%, 48%, 0.902);
-  }
+  } */
 

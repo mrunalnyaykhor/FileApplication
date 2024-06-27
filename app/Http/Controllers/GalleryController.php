@@ -3,21 +3,24 @@
 namespace App\Http\Controllers;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GalleryController extends Controller
 {
 
+  public function index()
+  {
 
-    public function index(){
-        $gallery  = Gallery::all();
-        return view("gallery.index",
-         [
-            'gallery'=> $gallery,
-        ]);
-    }
-    
+    $user = Auth::user();
+    $gallery = Gallery::where('email', $user->email)->paginate(5);
+    return view('gallery.index', ['gallery' => $gallery])->with('alert-success', ' successful...!');
+  }
     public function create(){
-        return view ("gallery.create");
+       // return view("gallery.create");
+       $user = Auth::user();
+       $gallery = Gallery::where('email', $user->email)->paginate(5);
+       return view('gallery.create', ['gallery' => $gallery]);
     }
 
     public function store(Request $request){
@@ -38,7 +41,6 @@ class GalleryController extends Controller
             $uploadPath = "uploads/gallery/";
 
             $file = $request->file('file');
-
             $extension = $file->getClientOriginalExtension();
             $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $counter = 1;
@@ -57,6 +59,7 @@ class GalleryController extends Controller
                            $fileSize = number_format($fileSizeBytes / 1024, 2) . ' KB';
                        }
             $owner = auth()->user()->name;
+            $email = auth()->user()->email;
 
             $file->move($uploadPath, $filename);
 
@@ -64,6 +67,7 @@ class GalleryController extends Controller
                 'fileName' => $filename,
                 'fileSize' =>$fileSize,
                 'owner' =>$owner,
+                'email' =>$email,
             ]);
 
             return response()->json(['success' => 'file Uploaded Successfully']);
@@ -85,7 +89,7 @@ class GalleryController extends Controller
         } else {
             return redirect()->back()->with('error', 'file not found.');
         }
-    }
+   }
 
 }
 

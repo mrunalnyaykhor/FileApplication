@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('http://127.0.0.1:8000/css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url('/css/create.css') }}">
+
 </head>
 
 <body>
@@ -24,7 +25,7 @@
                     <a class="nav-link" href="{{ url('about') }}">About_Us</a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('contact') }}">Contact_Us</a>
+                    <a class="nav-link" href="{{ url('contact') }}" title="click on contact us to get contact details">Contact_Us</a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -60,30 +61,49 @@
 </head>
 
 <body>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-18">
-                <div class="card mb-8">
-                    <div class="card-header11">
-                        <a class="btn btn-primary float-end" href="/login">Home</a>
-                        <a href="/homepage" class="btn btn-success float center">View Galary</a>
-
-                     <div class="card-body">
-
-                        <label>Drag and Drop Multiple files</label>
-                        <form action="{{ url('gallery/upload') }}" method="POST" enctype="multipart/form-data"
-                            class="dropzone" id="myDragAndDropUploader">
-                            @csrf
-                        </form>
-                        <h4 id="fileNames" class="file-name"></h4>
-                        <h5 id="message"></h5>
+    {{-- <div id = "exampleCircle"> --}}
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-18">
+                    <div class="card mb-8">
+                        <div class="card-header11">
+                            <a id = "exampleCircle" class="btn btn-primary float-end" href="/login"
+                            title="click on Home  to Exit"><br><b>Home<b></a>
+                            <a id = "exampleCircle" href="/homepage" class="btn btn-success float center"
+                            title="click on Gallery  to view Files details and files Metadata"><br><b> Gallery<b></a>
+                                <div class="nameplate-wrapper">
+                                    <div class="nameplate">
+                                        <i><b>Hello ,<q>{{ $gallery->first()->owner }}</q>&nbsp;if you want to upload files, please Drag and Drop Multiple files below section.</b></i>
+                                    </div>
+                                </div>
+                         <div class="card-body">
+                                 <i><b> <form action="{{ url('gallery/upload') }}" method="POST" enctype="multipart/form-data"
+                                class="dropzone" id="myDragAndDropUploader">
+                                @csrf
+                            </form></b></i>
+                            <h4 id="fileNames" class="file-name"></h4>
+                            <h5 id="message"></h5>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                </div>
             </div>
-        </div>
+            <div class="text-center">
+                {{ $gallery->links() }} <!-- This will render the pagination links in the center -->
+            </div>
 
 </body>
-
+<audio controls autoplay >
+    <source src="https://nzt6ku-a.akamaihd.net/downloads/ringtones/files/mp3/loveo2o-0714d7fc4852681-0-1-62372.mp3" type="audio/mp3">
+    </audio>
+{{-- <iframe width="362" height="315"
+src="https://www.youtube.com/embed/tgbNymZ7vqY" >
+</iframe>&nbsp;
+<iframe width="362" height="315"
+src="https://www.youtube.com/embed/tgbNymZ7vqY" >
+</iframe>&nbsp;
+<iframe width="362" height="315"
+src="https://www.youtube.com/embed/tgbNymZ7vqY">
+</iframe> --}}
 
 </html>

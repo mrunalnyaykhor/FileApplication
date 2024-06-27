@@ -5,6 +5,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('/css/register.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -19,15 +20,16 @@
                 </p>
              @endif
 
-             @if ($errors->any())
-                 <div style="color: red;">
-                     <ul>
-                         @foreach ($errors->all() as $error)
-                             <li>{{ $error }}</li>
-                         @endforeach
-                     </ul>
-                 </div>
-             @endif
+             @if($errors->any())
+        <div class="alert alert-danger" style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
                 <form action="{{ route('login.post') }}" method="POST">
                     @csrf
 
@@ -78,23 +80,25 @@
                                 checked
                             @endif>
                         <label class="form-check-label" for="remember">
-                            Remember Me
+                            <b>Remember Me</b>
                         </label>
                     </div>
 
                     <div class="d-grid mb-2">
                         <input type="submit" class="btn btn-info" value="Login">
+
                     </div>
 
-                    <div class="text-center">
-                        <a class="small" href="{{ url('register') }}">If no account? Sign-In</a><br>
-                        <a class="small" href="/forget-password">Forget Password</a>
+                    <div class="text-center" >
+                       <i> <a class="small" href="{{ url('register') }}"><b>If no account? Sign-In<b></a></i><br>
+                       <i > <a class="small" href="/forget-password"><b>Forget Password</b></a></i>
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             @if (session('success'))
@@ -106,6 +110,7 @@
             @endif
         });
     </script>
+
 </body>
 
 

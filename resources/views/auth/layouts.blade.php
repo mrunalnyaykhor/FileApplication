@@ -14,28 +14,28 @@
     <nav class="navbar navbar-expand-sm bg-black navbar-white">
         <div class="container-fluid">
             <!-- Heading name in the left corner -->
-            <a class="navbar-brand" href="{{ url('register') }}">FileShareApplication</a>
+            <a class="navbar-brand" href="{{ url('register') }}"><b>FileShareApplication</b></a>
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('homepage') }}">Homepage</a>
+                    <a class="nav-link active" href="{{ url('homepage') }}"><b>Homepage</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('about') }}">About_Us</a>
+                    <a class="nav-link" href="{{ url('about') }}"><b>About_Us</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('contact') }}">Contact_Us</a>
+                    <a class="nav-link" href="{{ url('contact') }}"><b>Contact_Us</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('register') }}">SignUp</a>
+                    <a class="nav-link active" href="{{ url('register') }}"><b >SignUp</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('login') }}">Login</a>
+                    <a class="nav-link active" href="{{ url('login') }}"><b>Login</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('/') }}">LogOut</a>
+                    <a class="nav-link active" href="{{ url('/') }}"><b>LogOut</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </ul>
         </div>

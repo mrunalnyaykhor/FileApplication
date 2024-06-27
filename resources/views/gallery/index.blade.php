@@ -7,17 +7,16 @@
     <title>@yield('title', 'File shared Application')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{ url('/css/index.css') }}">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 </head>
-
 <body class="indexbladebody">
     <nav class="navbar navbar-expand-sm bg-black navbar-white">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">FileShareApplication</a>
             <ul class="navbar-nav mx-auto">
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('about') }}">About_Us</a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,7 +34,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false"> Profile
                     </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{url('forget-password')}}">Reset Password</a></li>
+                        <li><a class="dropdown-item" href="{{ url('forget-password') }}">Reset Password</a></li>
                         <li><a class="dropdown-item" href="{{ url('edit') }}">Editprofile</a></li>
                         <li><a class="dropdown-item" href="/login">Logout</a></li>
                     </ul>
@@ -44,44 +43,71 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <h4>File List</h4>
+
+    <div class="container mt-8  ">
+        <div class="nameplate-wrapper">
+            <div class="nameplate">
+                <i>
+                    <h2 ><b>Filelist user :</b>
+                        <i class="bi bi-person-circle" style="font-size: 35px;"></i>
+                        <b>{{ $gallery->first()->owner }}</b>
+                    </h2>
+                </i>
+            </div>
+        </div>
+
         <div class="card-body">
             <div class="table-responsive">
+
                 <table class="table table-bordered">
                     <thead class="city1">
                         <tr>
-                            <th>Index</th>
-                            <th>File Name</th>
-                            <th>File Download</th>
-                            <th>File Share</th>
-                            <th>Delete</th>
+                            <th style="background-color:  #0ed4ce;">Index</th>
+                            <th style="background-color:  #0ed4ce;">File Name</th>
+                            <th style="background-color:  #0ed4ce;">File Download</th>
+                            <th style="background-color:  #0ed4ce;">File Share</th>
+                            <th style="background-color:  #0ed4ce;">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach ($gallery as $galImg)
                             <tr>
                                 <td>{{ $galImg->id }}</td> <!-- Assuming 'id' is the serial number -->
-                                <td>{{ $galImg->fileName }}</td>
-                                <td><a href="{{ asset('uploads/gallery/' . $galImg->fileName) }}" download>Download</a></td>
-                                <td>
-                                    <button type="button" class="btn btn-primary share-btn" data-file-url="{{ asset('uploads/gallery/' . $galImg->fileName) }}">Share</button>
+                                <td class="left-text">{{ $galImg->fileName }}</td>
+                                <td><a class="bi bi-download" style="font-size: 15px;"
+                                    href="{{ asset('uploads/gallery/' . $galImg->fileName) }}"></a> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    <a href="{{ asset('uploads/gallery/' . $galImg->fileName) }}" download>Download</a>
                                 </td>
                                 <td>
+                                    <button type="button" class="bishare bi-share share-btn btn btn-primary btn-circle btn-sm" style="font-size: 15px;"
+                                    data-file-url="{{ asset('uploads/gallery/' . $galImg->fileName) }}">&nbsp; <i>share</i>
+                                  </button>
+
+                                </td>
+                                <td>
+
                                     <form action="{{ route('gallery.delete', $galImg->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+
+                                        <button type="submit" class="bidelete bi-trash btn btn-danger btn-circle btn-sm"style="font-size: 15px;">&nbsp;<i>delete</i>&nbsp; </button>
+
                                     </form>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+
+            </div>
+            <div class="text-center">
+                {{ $gallery->links() }} <!-- This will render the pagination links in the center -->
             </div>
         </div>
-    </div>
 
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -90,11 +116,14 @@
                 var fileUrl = $(this).data('file-url');
                 var email = ''; // Enter recipient's email address here
                 var subject = 'Sharing a file with you';
-                var body = `Hi,\n\nI wanted to share this file with you: ${fileUrl}\n\nYou can download the file by clicking the link below:\n${fileUrl}\n\nBest regards,\n[Mrunal \n Php Developer]`;
-                var mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                var body =
+                    `Hi,\n\nI wanted to share this file with you: ${fileUrl}\n\nYou can download the file by clicking the link below:\n${fileUrl}\n\nBest regards,\n Mrunal ]`;
+                var mailtoLink =
+                    `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.location.href = mailtoLink;
             });
         });
     </script>
 </body>
+
 </html>

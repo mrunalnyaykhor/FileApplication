@@ -13,16 +13,16 @@
 <body>
 
     <div class="container">
-        <h1 class="mt-5">Contact us</h1>
+        <h4><b >Contact us<b></h4>
 
         <div class="contact-info">
 
-            <p><strong>Phone Number:</strong> +91-7700088990</p>
-            <p><strong>Email:</strong> nexus123@gmail.com</p>
+           <p><b>Phone Number:</b><i> +91-7700088990</i></p>
+            <p><strong >Email:</strong><i> nexus123@gmail.com</i></p>
+
         </div>
-
         <div class="contact-info">
-            <h2>Our Location</h2>
+            <h4><b>Our Location</b></h4>
             <div class="map-container">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30435.243708885615!2d78.46630201498776!3d17.36160710485766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99d2b5aedd03%3A0x5f9e3a27e7c51a1c!2sCharminar!5e0!3m2!1sen!2sin!4v1686160344290!5m2!1sen!2sin"

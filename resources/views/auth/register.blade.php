@@ -7,11 +7,11 @@
 </head>
 
 <body>
-    <div class="col-lg-6 col-md-6">
-                       <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+     <div class="col-lg-6 col-md-6">
+                       <div class="card flex-row my-5 border-7 shadow rounded 2 overflow-hidden">
                     <div class="card-body p-8 p-sm-6">
 
-                        <p class="card-title text-center mb-5 fw-bold fs-5">Register Here...!!</p>
+                        <p class="card-title text-center mb-5 fw-bold fs-5"><b>Register Here...!!</b></p>
                         @if (session('alert-success'))
                         <p> <div style="color: hsl(119, 91%, 48%);" >
                              {{ session('alert-success') }}
@@ -59,11 +59,11 @@
                                 @enderror
                                 <label for="floatingPasswordConfirm">Confirm Password</label>
                             </div>
-                            <div class="d-grid mb-2">
-                                <input type="submit" class="btn btn-info" value="Register">
+                           <div class="d-grid mb-2">
+                                <input type="submit" class="btn btn-info " value="Register">
                             </div>
 
-                            <a class="d-block text-center mt-2 small" href="{{ url('login') }}">Have an account? _login</a>
+                            <i> <a class="d-block text-center mt-2 small" href="{{ url('login') }}">Have an account? - login</a></i>
                             <hr class="my-4">
                         </form>
                     </div>

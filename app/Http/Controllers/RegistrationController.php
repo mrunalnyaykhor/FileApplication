@@ -9,15 +9,16 @@ use Illuminate\Support\Carbon;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 
 class RegistrationController extends Controller
 {
-    protected $user;
-    public function __construct(){
-        $this->user= new User();
+     public function __construct(){
+    $this->user= new User();
     }
+    protected $user;
     public function index(){
         $response['users']=$this->user->all();
         return view("auth.register")->with($response);
@@ -25,31 +26,47 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {
-
-        // Validate the incoming data
+        $messages = [
+            'password.required' => 'The password field is required.',
+            'password.string' => 'The password must be a string.',
+            'password.min' => 'The password must be at least 8 characters long.',
+            'password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character (@$!%*#?&).,like=Password@123',
+        ];
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
+            'password' => ['required','string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/[0-9]/','regex:/[@$!%*#?&]/'
+        ],
+        ],$messages);
         if (User::where('email', $validatedData['email'])->exists()) {
             return redirect()->back()->withErrors(['email' => 'Email address already exists']);
         }
+        try {
             $user = new User();
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
+            $user->name = $validatedData['name'];
+            $user->email = $validatedData['email'];
+            $user->password = Hash::make($validatedData['password']);
+            $user->verification_code = "pending";
+            $user->email_verified_at = "pending";
 
-            $user->verification_code = "1";
-          $user->save();
-            if($user != null){
+            $user->save();
+            Log::info("User ID $user->email created successfully.");
 
-                MailController::sendSignupEmail($user->name, $user->email, $user->verification_code);
+            if ($user->save()) {
+                // Ensure MailController::sendSignupEmail returns a boolean or handle errors within it.
+                MailController::sendSignupEmail($user->name, $user->email, $user->verification_code, $user->email_verified_at);
                 return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification link.'));
             }
 
+            // This condition should realistically not be met, as $user->save() should throw an exception if it fails.
+            Log::error('User creation failed for unknown reasons.');
             return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
 
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('User creation failed: ' . $e->getMessage());
+            return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
+        }
 
         }
         public function updateName(Request $request, $id)
@@ -62,7 +79,7 @@ class RegistrationController extends Controller
             ]);
             $user = User::find($id);
             if (!$user) {
-                return redirect()->back()->withErrors(['user' => 'User not found']);
+                return redirect()->back()->withErrors(['error' => 'User not found']);
             }
             $user->name = $request['name'];
             $user->save();
@@ -82,7 +99,7 @@ class RegistrationController extends Controller
         $verification_code = \Illuminate\Support\Facades\Request::get('code');
         $user = User::where(['verification_code' => $verification_code])->first();
         if($user != null){
-            $user->is_verified = 1;
+            $user->is_verified = "true";
             $user->save();
             return redirect()->route('login')->with(session()->flash('alert-success', 'Your account is verified. Please login!'));
         }
@@ -153,12 +170,20 @@ class RegistrationController extends Controller
     //reset password functionality
 
     public function resetPassword(Request $request){
+        $messages = [
+            'password.required' => 'The password field is required.',
+            'password.string' => 'The password must be a string.',
+            'password.min' => 'The password must be at least 8 characters long.',
+            'password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character (@$!%*#?&).,like=Password@123',
+        ];
 
       $request ->validate([
 
-        'password'=>'required|string|min:4|confirmed',
-
-      ]);
+       // 'password'=>'required|string|min:4|confirmed',
+       'password' => [
+        'required', 'string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/[0-9]/','regex:/[@$!%*#?&]/'
+    ],
+      ],$messages);
        $user = User::find($request->id);
        $newPassword = $request->password;
        $user->password =Hash::make($request->password);
