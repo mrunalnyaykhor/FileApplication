@@ -178,8 +178,6 @@ class RegistrationController extends Controller
         ];
 
       $request ->validate([
-
-       // 'password'=>'required|string|min:4|confirmed',
        'password' => [
         'required', 'string','min:8','regex:/[a-z]/','regex:/[A-Z]/','regex:/[0-9]/','regex:/[@$!%*#?&]/'
     ],

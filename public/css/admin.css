@@ -1,0 +1,49 @@
+.gradient-custom-3 {
+    /* fallback for old browsers */
+    background: #84fab0;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+    }
+    .gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84fab0;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+    }
+.card{
+    color: rgb(10, 111, 227);
+    background-color: #6d076c;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 0px;
+    width: 700px;
+}
+ p{
+    text-align: center;
+    color: rgb(10, 111, 227);
+ }
+ .formbody
+{ background: hwb(327 0% 96%);
+    text-align: center;
+    color: #d1d1d8;
+    box-shadow: hsl(142, 96%, 40%);
+}
+.d-flex {
+    text-align: center;
+    padding-top: 0px;
+
+}
+.text-center{
+    color: #8884fa;
+    text-shadow: #b7e807;
+    padding-left: 20px;
+    padding-right: 50px;
+}

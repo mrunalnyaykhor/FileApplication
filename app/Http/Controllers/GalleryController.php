@@ -1,26 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\File;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File as FacadesFile;
 
 class GalleryController extends Controller
 {
 
-  public function index()
-  {
+    public function index()
+    {
 
-    $user = Auth::user();
-    $gallery = Gallery::where('email', $user->email)->paginate(5);
-    return view('gallery.index', ['gallery' => $gallery])->with('alert-success', ' successful...!');
+      $user = Auth::user();
+      $gallery = Gallery::where('email', $user->email)->paginate(5);
+      return view('gallery.index', ['gallery' => $gallery])->with('alert-success', ' successful...!');
+    }
+  public function galleryindex(){
+      $gallery = Gallery::paginate(5);
+    return view('gallery.admin', ['gallery' => $gallery])->with('alert-success', ' successful...!');
   }
     public function create(){
-       // return view("gallery.create");
        $user = Auth::user();
        $gallery = Gallery::where('email', $user->email)->paginate(5);
-       return view('gallery.create', ['gallery' => $gallery]);
+       return view('gallery.create',compact('gallery'));
     }
 
     public function store(Request $request){
@@ -78,17 +83,45 @@ class GalleryController extends Controller
 
     public function delete($id)
     {
-
-        $galleryImage = Gallery::find($id);
-
-        if ($galleryImage) {
-
-            $galleryImage->delete();
-
-            return redirect()->back()->with('success', 'file deleted successfully.');
-        } else {
-            return redirect()->back()->with('error', 'file not found.');
+        $user = Auth::user();
+       $gallery = Gallery::where('email', $user->email)->paginate(5);
+        $gallery = Gallery::findOrFail($id);
+        $filePath = public_path('uploads/gallery/' . $gallery->fileName);
+        if (FacadesFile::exists($filePath)) {
+            FacadesFile::delete($filePath);
         }
+        $gallery->delete();
+        return redirect()->back()->with('success', 'File deleted successfully.');
+   }
+
+public function destroy($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+        $filePath = public_path('uploads/gallery/' . $gallery->fileName);
+        if (FacadesFile::exists($filePath)) {
+            FacadesFile::delete($filePath);
+        }
+        $gallery->delete();
+
+        return redirect()->back()->with('success', 'File deleted successfully.');
+    }
+   public function deleteFile($id){
+    $gallery = Gallery::findOrFail($id);
+    $filePath = public_path('uploads/gallery/' . $gallery->fileName);
+    if (FacadesFile::exists($filePath)) {
+        FacadesFile::delete($filePath);
+    }
+    $gallery->delete();
+
+   return response()->json(['success' => 'File deleted successfully.', 'redirect' => url('/admin/login')]);
+
+   }
+
+   public function adminGallery()
+   {
+       $admin = Auth::user();
+       $gallery = Gallery::where('email', $admin->email)->paginate(5);
+       return view('gallery.admingallery', compact('gallery'));
    }
 
 }

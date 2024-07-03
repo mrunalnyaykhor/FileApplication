@@ -35,7 +35,7 @@
     white-space: nowrap;
     border: 8px solid hwb(340 0% 99%);
     border-radius: 5px;
-    width: 1115px; /* Adjust the width as needed */
+    width: 1298px; /* Adjust the width as needed */
     background-color: hwb(220 93% 4%);
 }
 
@@ -54,7 +54,7 @@
         transform: translateX(100%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-40%);
     }
 }
  /* .card-header11{

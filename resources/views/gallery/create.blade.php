@@ -36,7 +36,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ url('forget-password') }}">Reset Password</a></li>
                         <li><a class="dropdown-item" href="{{ url('edit') }}">Editprofile</a></li>
-                        <li><a class="dropdown-item" href="/login">Logout</a></li>
+                        <li><a class="dropdown-item" href="/">Logout</a></li>
                     </ul>
                 </div>
             </ul>
@@ -69,7 +69,7 @@
                         <div class="card-header11">
                             <a id = "exampleCircle" class="btn btn-primary float-end" href="/login"
                             title="click on Home  to Exit"><br><b>Home<b></a>
-                            <a id = "exampleCircle" href="/homepage" class="btn btn-success float center"
+                            <a id = "exampleCircle" href="/gallery" class="btn btn-success float center"
                             title="click on Gallery  to view Files details and files Metadata"><br><b> Gallery<b></a>
                                 <div class="nameplate-wrapper">
                                     <div class="nameplate">
@@ -88,9 +88,9 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
+            {{-- <div class="text-center">
                 {{ $gallery->links() }} <!-- This will render the pagination links in the center -->
-            </div>
+            </div> --}}
 
 </body>
 <audio controls autoplay >

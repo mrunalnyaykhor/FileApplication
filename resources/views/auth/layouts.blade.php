@@ -17,8 +17,9 @@
             <a class="navbar-brand" href="{{ url('register') }}"><b>FileShareApplication</b></a>
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('homepage') }}"><b>Homepage</b></a>
+                    <a class="nav-link active" href="{{ url('/') }}"><b>Homepage</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('about') }}"><b>About_Us</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -26,16 +27,16 @@
                     <a class="nav-link" href="{{ url('contact') }}"><b>Contact_Us</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            {{-- <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('register') }}"><b >SignUp</b></a>
+                    <a class="nav-link active" href="{{ url('admin/register') }}"><b >Admin SignUp</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ url('login') }}"><b>Login</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+--}}
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url('/') }}"><b>LogOut</b></a>
+                    <a class="nav-link active" href="{{ url('/') }}"><b>Exit</b></a>
                 </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </ul>
         </div>

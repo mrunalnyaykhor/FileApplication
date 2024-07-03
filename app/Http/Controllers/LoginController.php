@@ -4,11 +4,13 @@ use App\Models\Gallery;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
     protected $user;
+    protected $admin;
     public function index(){
 
         return view('auth.login');
@@ -20,6 +22,7 @@ class LoginController extends Controller
         return view('gallery.index', ['gallery' => $gallery])->with('alert-success', ' successful...!');
     }
     public function login(Request $request) {
+        $value = $request->session()->get('key');
 
         $request->validate([
             "email" => "required|email",
@@ -43,6 +46,7 @@ class LoginController extends Controller
                 }
             }
 
+          
             $user = Auth::user();
             $gallery = Gallery::where('email', $user->email)->paginate(5);
 

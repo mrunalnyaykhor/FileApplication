@@ -26,7 +26,7 @@ body {
     white-space: nowrap;
     border: 10px solid #000;
     border-radius: 5px;
-    width: 1300px; /* Adjust the width as needed */
+    width: 1298px; /* Adjust the width as needed */
     background-color: hwb(220 93% 4%);
 }
 
@@ -37,7 +37,7 @@ body {
     font-weight: bold;
     color: hwb(266 4% 8%);
     /* white-space: nowrap; */
-    animation: scroll 15s linear infinite;
+    animation: scroll 8s linear infinite;
 }
 
 @keyframes scroll {
@@ -45,7 +45,7 @@ body {
         transform: translateX(100%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-40%);
     }
 }
 

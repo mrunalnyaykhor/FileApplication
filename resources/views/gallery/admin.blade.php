@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -26,16 +27,13 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{{ url('gallery/upload') }}" class="btn btn-primary float-end">Upload file</a>
-                </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               
                 <div class="dropdown">
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                         data-bs-toggle="dropdown" aria-expanded="false"> Profile
                     </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{ url('forget-password') }}">Reset Password</a></li>
-                        <li><a class="dropdown-item" href="{{ url('edit') }}">Editprofile</a></li>
+
                         <li><a class="dropdown-item" href="/">Logout</a></li>
                     </ul>
                 </div>
@@ -48,9 +46,12 @@
         <div class="nameplate-wrapper">
             <div class="nameplate">
                 <i>
-                    <h2 ><b>Filelist user :</b>
-                        <i class="bi bi-person-circle" style="font-size: 35px;"></i>
-                        <b>{{ $gallery->first()->owner }}</b>
+                    <h2 >
+                        <b>Dear Admin </b>
+                            <i class="bi bi-person-circle" style="font-size: 30px;"></i>
+                            <b>{{ $admin->firstName }}</b>
+                        <i style="font-size: 30px;"></i>
+                        <b>, here is the list of all user files.</b>
 
                     </h2>
                 </i>
@@ -65,6 +66,8 @@
                         <tr>
                             <th style="background-color:  #0ed4ce;">Index</th>
                             <th style="background-color:  #0ed4ce;">File Name</th>
+                            <th style="background-color:  #0ed4ce;">File UserName</th>
+                            <th style="background-color:  #0ed4ce;">File UserEmailId</th>
                             <th style="background-color:  #0ed4ce;">File Download</th>
                             <th style="background-color:  #0ed4ce;">File Share</th>
                             <th style="background-color:  #0ed4ce;">Delete</th>
@@ -76,6 +79,8 @@
                             <tr>
                                 <td>{{ $galImg->id }}</td> <!-- Assuming 'id' is the serial number -->
                                 <td class="left-text">{{ $galImg->fileName }}</td>
+                                <td class="left-text">{{ $galImg->owner }} </td>
+                                <td class="left-text">{{$galImg->email }}</td>
                                 <td><a class="bi bi-download" style="font-size: 15px;"
                                     href="{{ asset('uploads/gallery/' . $galImg->fileName) }}"></a> &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -88,11 +93,12 @@
 
                                 </td>
                                 <td>
-                                    <form action="{{ route('gallery.delete', $galImg->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="bidelete bi-trash btn btn-danger btn-circle btn-sm" style="font-size: 15px;">&nbsp;<i>delete</i>&nbsp;</button>
-                                    </form>
+                                       <form action="{{ route('gallery.admingallery', $galImg->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bidelete bi-trash btn btn-danger btn-circle btn-sm" style="font-size: 15px;">&nbsp;<i>delete</i>&nbsp;</button>
+                                        </form>
+                                    </td>
                                 </td>
                             </tr>
                         @endforeach
@@ -101,7 +107,7 @@
 
             </div>
             <div class="text-center">
-                {{ $gallery->links() }} <!-- This will render the pagination links in the center -->
+                {{ $gallery->links() }}
             </div>
         </div>
 
@@ -115,7 +121,7 @@
                 var email = ''; // Enter recipient's email address here
                 var subject = 'Sharing a file with you';
                 var body =
-                    `Hi,\n\nI wanted to share this file with you: ${fileUrl}\n\nYou can download the file by clicking the link below:\n${fileUrl}\n\nBest regards,\n Mrunal ]`;
+                    `Hi,\n\nI wanted to share this file with you: ${fileUrl}\n\nYou can download the file by clicking the link below:\n${fileUrl}\n\nBest regards,\n Tech.IT Solution ]`;
                 var mailtoLink =
                     `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.location.href = mailtoLink;
